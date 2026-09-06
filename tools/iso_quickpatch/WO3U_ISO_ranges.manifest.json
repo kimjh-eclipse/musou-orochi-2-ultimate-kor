@@ -1,10 +1,10 @@
 {
-  "version": "v20260906",
+  "version": "v20260906b",
   "format": 1,
   "source_iso": "C:\\Emul\\Switch\\패치유틸.xdeltaUI\\Musou Orochi 2 Ultimate (Japan).iso",
   "source_iso_size": 20069285888,
   "target_dir": "C:\\Emul\\PS3\\rpcs3-v0.0.27-14986-db7f84f9_win64\\dev_hdd0\\disc\\BLJM61084\\PS3_GAME\\USRDIR",
-  "install_authority": "jp_ui_v25/install_report.json",
+  "install_authority": "jp_ui_v27/install_report.json",
   "merge_gap": 16,
   "files": [
     {
@@ -31,7 +31,7 @@
         }
       ],
       "source_sha256": "11872DF3C8E1026FBFBD9A4A508D2E20B3926DCD45F011C5F609168629A8558B",
-      "target_sha256": "A5B5FAAF5ECB889ECC1D37365A684A805F87AED3342FF4BD4009920FFAE08CC6",
+      "target_sha256": "D7DDDEC52C1771808CD804CC60D19CBBFC2BD20600FCDF14DA38362A744DD85A",
       "range_count": 573,
       "payload_bytes": 1110
     },
@@ -77,13 +77,13 @@
         }
       ],
       "source_sha256": "E8A491D3FA5B06154B98A56745DA598423555E32DF17DE73D24A4F2E0A6EDAA9",
-      "target_sha256": "1EF9EA13065A0598BAD3DDCF6A150DD35236EAA9B4B42EF27A1AE16FC2AD3FED",
-      "range_count": 2478,
-      "payload_bytes": 21642794
+      "target_sha256": "CEE8EA70120B012301A65C21280401D7E776A6D1BCCFA39AA92BCBC75ACC2FFB",
+      "range_count": 2491,
+      "payload_bytes": 21642123
     }
   ],
-  "total_ranges": 3053,
-  "total_payload": 35807450,
-  "pack_size": 35844428,
-  "pack_sha256": "CA19AC84EFE2FEECDDA1F806549EF0F676DEF3DD0967FBBD31C4DE7835276DB9"
+  "total_ranges": 3066,
+  "total_payload": 35806779,
+  "pack_size": 35843914,
+  "pack_sha256": "B216D8AEDAA2DD6A429824AF18F8C6481A4D70AA28592F359AD54C1E3870920A"
 }

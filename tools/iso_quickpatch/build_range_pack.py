@@ -39,8 +39,8 @@ OUTPUT = HERE / "WO3U_ISO_ranges.bin"
 MANIFEST = HERE / "WO3U_ISO_ranges.manifest.json"
 
 # 릴리즈 표기 버전. hdd0 상태가 바뀌면(예: v26 설치) 갱신 후 재실행.
-VERSION_TEXT = "v20260906"
-INSTALL_AUTHORITY = "jp_ui_v26/install_report.json"  # 팩 생성 시점(22:52) hdd0 = v26. v27(entry40) 은 미포함
+VERSION_TEXT = "v20260906b"
+INSTALL_AUTHORITY = "jp_ui_v27/install_report.json"
 
 FILES = (
     "PS3_GAME/USRDIR/EBOOT.BIN",
