@@ -36,16 +36,24 @@ PS3 『無双OROCHI2 Ultimate』 **일본판** — 게임 ID `BLJM61084`
 
 ## 2. 내려받기
 
-저장소 루트의 [WO3U_ISO_QuickPatch.exe](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/raw/main/WO3U_ISO_QuickPatch.exe) 를 받습니다.
-정식 배포가 시작되면 [Releases](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases) 의 ZIP 을 쓰세요.
+[WO3U_KR_v20260906b.zip](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases/download/v20260906b/WO3U_KR_v20260906b.zip) 을 받아 압축을 풉니다. 최신판은
+[Releases](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases) 에서 확인하세요. 저장소 루트에도 같은 실행 파일이 있습니다.
 
 ```
-WO3U_ISO_QuickPatch.exe   35,891,712 바이트   (v20260906b)
-SHA-256: 443523F3A4B34D51FF041E2F2692DA7FBF7ABEAB0CFCF0F7F9036B67FFE009A2
+WO3U_KR_v20260906b.zip    21,053,751 바이트
+SHA-256: 97009A61A55FEF1C1B72436A2EC1727DD7FF39CEC4A4EA421703DF7446273202
 ```
 
 ```powershell
-Get-FileHash .\WO3U_ISO_QuickPatch.exe -Algorithm SHA256
+Get-FileHash .\WO3U_KR_v20260906b.zip -Algorithm SHA256
+```
+
+압축을 풀면 `WO3U_KR_v20260906b` 폴더 안에 다음이 나옵니다.
+
+```
+WO3U_ISO_QuickPatch.exe   패처 (패치 데이터 내장, 35,891,712 바이트)
+README_사용법.txt
+SHA256SUMS.txt
 ```
 
 실행 파일 하나에 패치 데이터가 들어 있어 다른 파일은 필요 없습니다. .NET Framework 4.x 가 있는 Windows 에서 실행됩니다.

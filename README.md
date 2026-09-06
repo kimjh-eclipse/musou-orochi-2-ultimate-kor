@@ -12,8 +12,8 @@ PS3 『無双OROCHI2 Ultimate』(Warriors Orochi 3 Ultimate, 일본판 `BLJM6108
 
 ## 다운로드
 
-[Releases](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases) 에서 최신 패치를 받으세요.
-저장소에도 현재 버전의 패처(`WO3U_ISO_QuickPatch.exe`)와 사용법이 들어 있습니다.
+[Releases](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases) 에서 최신 패치를 받으세요. 현재 사전 릴리즈: [WO3U_KR_v20260906b.zip](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases/download/v20260906b/WO3U_KR_v20260906b.zip)
+저장소 루트에도 같은 패처(`WO3U_ISO_QuickPatch.exe`)와 사용법이 들어 있습니다.
 
 ## 적용 방법
 

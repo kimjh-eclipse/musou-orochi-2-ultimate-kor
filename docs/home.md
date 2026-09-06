@@ -5,22 +5,25 @@ PS3 『無双OROCHI2 Ultimate』(Warriors Orochi 3 Ultimate) 일본판(`BLJM6108
 > **⚠️ 작업 진행 중입니다.** 번역과 이미지 교체가 계속 갱신되고 있어 패치 내용은 버전마다 바뀝니다.
 > 정식 배포판이 아니며, 패처와 문서를 먼저 공개합니다.
 >
-> **📦 현재 패처: [WO3U_ISO_QuickPatch.exe](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/raw/main/WO3U_ISO_QuickPatch.exe)** (v20260906b, 저장소 루트)
-> — 복호화 ISO와 RPCS3 폴더형 게임을 모두 처리합니다. 원본 게임 데이터는 포함되지 않습니다.
+> **📦 v20260906b 내려받기: [WO3U_KR_v20260906b.zip](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases/download/v20260906b/WO3U_KR_v20260906b.zip)** (사전 릴리즈)
+> — 복호화 ISO와 RPCS3 폴더형 게임을 모두 처리하는 패처 + 사용법 + 해시. 원본 게임 데이터는 포함되지 않습니다.
 >
-> 정식 배포가 시작되면 [Releases](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases) 에 ZIP 으로 올립니다.
+> 최신판은 [Releases](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases) 에서 받으세요.
 >
 > **💾 저장소: [musou-orochi-2-ultimate-kor](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor)**
 
 받으신 파일이 저장소의 것과 같은지 확인하실 수 있습니다.
 
 ```
+WO3U_KR_v20260906b.zip    21,053,751 바이트
+SHA-256: 97009A61A55FEF1C1B72436A2EC1727DD7FF39CEC4A4EA421703DF7446273202
+
 WO3U_ISO_QuickPatch.exe   35,891,712 바이트
 SHA-256: 443523F3A4B34D51FF041E2F2692DA7FBF7ABEAB0CFCF0F7F9036B67FFE009A2
 ```
 
 ```powershell
-Get-FileHash .\WO3U_ISO_QuickPatch.exe -Algorithm SHA256
+Get-FileHash .\WO3U_KR_v20260906b.zip -Algorithm SHA256
 ```
 
 | | |
@@ -28,7 +31,7 @@ Get-FileHash .\WO3U_ISO_QuickPatch.exe -Algorithm SHA256
 | 버전 | `v20260906b` |
 | 대상 | 일본판 `BLJM61084` 복호화 ISO 또는 폴더형 게임 |
 | 설치 방식 | 빠른 패처 하나 — ISO 모드 / 폴더 모드 중 **하나만** |
-| 배포 형식 | 실행 파일 하나. 원본과의 차이 구간 3,066개(35.8 MB)가 내장 |
+| 배포 형식 | ZIP(실행 파일 + 사용법 + 해시). 원본과의 차이 구간 3,066개(35.8 MB)가 실행 파일에 내장 |
 | 검증 환경 | RPCS3 v0.0.27 폴더형 게임 |
 
 ## 번역 범위 (현재까지)
