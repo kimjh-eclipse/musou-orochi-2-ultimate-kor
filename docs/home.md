@@ -2,10 +2,7 @@
 
 PS3 『無双OROCHI2 Ultimate』(Warriors Orochi 3 Ultimate) 일본판(`BLJM61084`) 비공식 한국어 패치 문서입니다.
 
-> **⚠️ 작업 진행 중입니다.** 번역과 이미지 교체가 계속 갱신되고 있어 패치 내용은 버전마다 바뀝니다.
-> 정식 배포판이 아니며, 패처와 문서를 먼저 공개합니다.
->
-> **📦 v20260906b 내려받기: [WO3U_KR_v20260906b.zip](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases/download/v20260906b/WO3U_KR_v20260906b.zip)** (사전 릴리즈)
+> **📦 v20260906b 내려받기: [WO3U_KR_v20260906b.zip](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases/download/v20260906b/WO3U_KR_v20260906b.zip)**
 > — 복호화 ISO와 RPCS3 폴더형 게임을 모두 처리하는 패처 + 사용법 + 해시. 원본 게임 데이터는 포함되지 않습니다.
 >
 > 최신판은 [Releases](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases) 에서 받으세요.

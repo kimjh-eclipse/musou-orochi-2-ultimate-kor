@@ -5,14 +5,11 @@ PS3 『無双OROCHI2 Ultimate』(Warriors Orochi 3 Ultimate, 일본판 `BLJM6108
 > **패치 파일만 배포합니다.** 게임 ISO는 포함되어 있지 않으며 제공하지도 않습니다.
 > 본인이 소유한 디스크에서 직접 덤프해 복호화한 ISO, 또는 그 ISO를 풀어 놓은 폴더형 게임에 적용해 주세요.
 
-> **현재 상태: 작업 진행 중.** 번역과 이미지 교체가 계속 갱신되고 있어 패치 내용은 버전마다 바뀝니다.
-> 아직 정식 배포판이 아니며, 패처 자체를 먼저 공개합니다.
-
 📖 **문서 사이트**: https://kimjh-eclipse.github.io/musou-orochi-2-ultimate-kor/ ([docs/](docs/home.md)) — LINKDATA 아카이브 구조, 폰트 아틀라스, 빠른 패처 설계
 
 ## 다운로드
 
-[Releases](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases) 에서 최신 패치를 받으세요. 현재 사전 릴리즈: [WO3U_KR_v20260906b.zip](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases/download/v20260906b/WO3U_KR_v20260906b.zip)
+[Releases](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases) 에서 최신 패치를 받으세요. 현재 버전: [WO3U_KR_v20260906b.zip](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases/download/v20260906b/WO3U_KR_v20260906b.zip)
 저장소 루트에도 같은 패처(`WO3U_ISO_QuickPatch.exe`)와 사용법이 들어 있습니다.
 
 ## 적용 방법
