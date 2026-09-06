@@ -1,0 +1,89 @@
+{
+  "version": "v20260906",
+  "format": 1,
+  "source_iso": "C:\\Emul\\Switch\\패치유틸.xdeltaUI\\Musou Orochi 2 Ultimate (Japan).iso",
+  "source_iso_size": 20069285888,
+  "target_dir": "C:\\Emul\\PS3\\rpcs3-v0.0.27-14986-db7f84f9_win64\\dev_hdd0\\disc\\BLJM61084\\PS3_GAME\\USRDIR",
+  "install_authority": "jp_ui_v25/install_report.json",
+  "merge_gap": 16,
+  "files": [
+    {
+      "iso_path": "PS3_GAME/USRDIR/EBOOT.BIN",
+      "size": 14167896,
+      "iso_extents": [
+        {
+          "offset": 7864320,
+          "size": 14167896
+        }
+      ],
+      "source_sha256": "E59780C5DC9C9F27B1CECEF4C3D71AACC9E7C55B86323C7F25BEF54BFFFABF66",
+      "target_sha256": "BCC84BDA4C20C984021CB5432190120209CDE960053858A2E2377BF931EC0612",
+      "range_count": 2,
+      "payload_bytes": 14163546
+    },
+    {
+      "iso_path": "PS3_GAME/USRDIR/LINKDATA.IDX",
+      "size": 1198592,
+      "iso_extents": [
+        {
+          "offset": 26089472,
+          "size": 1198592
+        }
+      ],
+      "source_sha256": "11872DF3C8E1026FBFBD9A4A508D2E20B3926DCD45F011C5F609168629A8558B",
+      "target_sha256": "A5B5FAAF5ECB889ECC1D37365A684A805F87AED3342FF4BD4009920FFAE08CC6",
+      "range_count": 573,
+      "payload_bytes": 1110
+    },
+    {
+      "iso_path": "PS3_GAME/USRDIR/LINKDATA.BIN",
+      "size": 9259816960,
+      "iso_extents": [
+        {
+          "offset": 27289600,
+          "size": 1073739776
+        },
+        {
+          "offset": 1101029376,
+          "size": 1073739776
+        },
+        {
+          "offset": 2174769152,
+          "size": 1073739776
+        },
+        {
+          "offset": 3248508928,
+          "size": 1073739776
+        },
+        {
+          "offset": 4322248704,
+          "size": 1073739776
+        },
+        {
+          "offset": 5395988480,
+          "size": 1073739776
+        },
+        {
+          "offset": 6469728256,
+          "size": 1073739776
+        },
+        {
+          "offset": 7543468032,
+          "size": 1073739776
+        },
+        {
+          "offset": 8617207808,
+          "size": 669898752
+        }
+      ],
+      "source_sha256": "E8A491D3FA5B06154B98A56745DA598423555E32DF17DE73D24A4F2E0A6EDAA9",
+      "target_sha256": "1EF9EA13065A0598BAD3DDCF6A150DD35236EAA9B4B42EF27A1AE16FC2AD3FED",
+      "range_count": 2478,
+      "payload_bytes": 21642794
+    }
+  ],
+  "total_ranges": 3053,
+  "total_payload": 35807450,
+  "pack_size": 35844428,
+  "pack_sha256": "CA19AC84EFE2FEECDDA1F806549EF0F676DEF3DD0967FBBD31C4DE7835276DB9"
+}
