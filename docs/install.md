@@ -9,7 +9,7 @@
 3. [WO3U_KR_v20260910b.zip](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases/download/v20260910b/WO3U_KR_v20260910b.zip)을 내려받아 압축을 풉니다.
 4. 게임 원본과 세이브의 별도 보관을 권장합니다. 패처의 구간 백업은 게임 전체 백업이 아닙니다.
 
-배포 ZIP에는 `WO3U_ISO_QuickPatch.exe`, `README_사용법.txt`, `SHA256SUMS.txt`가 들어 있습니다. 패치 데이터는 EXE에 내장되어 있습니다. **저장소 루트의 구버전 EXE 대신 릴리즈 ZIP을 사용하세요.**
+배포 ZIP에는 `WO3U_ISO_QuickPatch.exe`, `README_사용법.txt`, `SHA256SUMS.txt`가 들어 있습니다. 패치 데이터는 EXE에 내장되어 있습니다. **릴리즈 ZIP을 사용하세요. 저장소 루트의 구형 배포 파일은 정리했습니다.**
 
 ```powershell
 Get-FileHash .\WO3U_KR_v20260910b.zip -Algorithm SHA256

@@ -62,7 +62,7 @@
 
 ## 공개 소스 범위와 재현 조건
 
-현재 저장소의 [tools 안내](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/blob/main/tools/README.md)와 `tools/iso_quickpatch/`에는 이전 3파일 패처·팩 생성·검증 코드가 있습니다. **최신 5파일 소스 및 번역 명세·매핑·전체 이미지 빌더가 모두 공개된 완전 재현 저장소는 아닙니다.** 루트의 이전 EXE·해시 파일도 최신 릴리즈 기준값으로 사용하면 안 됩니다.
+현재 저장소의 [tools 안내](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/blob/main/tools/README.md)와 `tools/iso_quickpatch/`에는 이전 3파일 패처·팩 생성·검증 코드가 있습니다. **최신 5파일 소스 및 번역 명세·매핑·전체 이미지 빌더가 모두 공개된 완전 재현 저장소는 아닙니다.** 루트의 이전 EXE·사용법·해시 파일은 정리했으며, 최신 배포물은 Releases에서 제공합니다.
 
 최신 빌드를 완전히 재현하려면 정확한 원본 해시의 게임 데이터, 버전 고정 번역 명세, 고정 글리프 매핑, 이미지 교체 명세와 글꼴, 빌더 의존성, 5파일 패처 소스, 최종 검증 명세가 함께 필요합니다. 원본 게임 데이터는 배포 대상이 아닙니다.
 
