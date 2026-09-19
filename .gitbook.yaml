@@ -2,4 +2,4 @@ root: ./docs/
 
 structure:
   readme: home.md
-  summary: _sidebar.md
+  summary: SUMMARY.md

@@ -1,83 +1,72 @@
-# 무쌍 오로치 2 얼티밋 한국어 패치
+# 무쌍 오로치 2 얼티메이트 한국어 패치
 
-PS3 『無双OROCHI2 Ultimate』(Warriors Orochi 3 Ultimate, 일본판 `BLJM61084`)의 한국어 패치입니다.
+PS3 일본판 **無双OROCHI2 Ultimate / BLJM61084**용 비공식 한국어 패치입니다. 직접 준비한 복호화 ISO 또는 RPCS3 폴더형 게임에 적용합니다. 게임 원본·ISO·세이브는 배포하지 않습니다.
 
-> **패치 파일만 배포합니다.** 게임 ISO는 포함되어 있지 않으며 제공하지도 않습니다.
-> 본인이 소유한 디스크에서 직접 덤프해 복호화한 ISO, 또는 그 ISO를 풀어 놓은 폴더형 게임에 적용해 주세요.
+## 최신 배포
 
-📖 **문서 사이트**: https://kimjh-eclipse.github.io/musou-orochi-2-ultimate-kor/ ([docs/](docs/home.md)) — LINKDATA 아카이브 구조, 폰트 아틀라스, 빠른 패처 설계
+**v20260910b — 2026-09-10 정식 릴리즈** · 문서 갱신: 2026-09-19
 
-## 다운로드
+[패치 ZIP 다운로드](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases/download/v20260910b/WO3U_KR_v20260910b.zip) · [릴리즈 설명](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases/tag/v20260910b) · [문서 사이트](https://kimjh-eclipse.github.io/musou-orochi-2-ultimate-kor/)
 
-[Releases](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases) 에서 최신 패치를 받으세요. 현재 버전: [WO3U_KR_v20260906b.zip](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/releases/download/v20260906b/WO3U_KR_v20260906b.zip)
-저장소 루트에도 같은 패처(`WO3U_ISO_QuickPatch.exe`)와 사용법이 들어 있습니다.
+이번 릴리즈는 기존 번역에 **한국어 게임 제목과 목록 아이콘**을 추가합니다. `PARAM.SFO`의 제목은 `무쌍 오로치 2 얼티메이트`이며 게임 ID는 유지합니다. RPCS3 설정을 변경하는 방식이 아니라 게임 파일에 반영하는 패치입니다.
 
-## 적용 방법
+> 최신 패처는 반드시 위 릴리즈 ZIP에서 받으세요. 저장소 루트의 EXE·사용법·해시 파일과 `tools/`는 이전 3파일 패처 시점의 자료이며, 최신 5파일 배포물과 같지 않습니다.
 
-패처 하나로 두 가지 대상을 처리합니다. 같은 대상에 두 방식을 겹쳐 적용하지 마세요.
+## 설치 요약
 
-### A. 복호화 ISO
+1. RPCS3를 완전히 종료하고 ISO를 마운트했다면 해제합니다.
+2. ZIP을 풀고 `WO3U_ISO_QuickPatch.exe`를 실행합니다.
+3. **실제로 실행하는 ISO 또는 게임 폴더**를 지정해 상태를 검사합니다.
+4. `.wo3u-backup` 경로를 확인하고 패치를 적용합니다. 구버전 사용자는 기존 백업을 지정합니다.
+5. 로그에서 적용 후 **5개 파일 전체 해시 검증 성공**을 확인합니다. 새로 부팅하고 게임 내부 세이브를 불러옵니다.
 
-1. RPCS3와 ISO 마운트 프로그램을 종료합니다.
-2. `WO3U_ISO_QuickPatch.exe`를 실행하고 복호화된 일본판 ISO를 선택합니다.
-3. **ISO 상태 검사**로 원본인지 확인한 뒤, 주의사항에 동의하고 **ISO에 한국어 패치 적용**을 누릅니다.
+세이브나 게임 등록을 지울 필요는 없습니다. 복구·갱신에 쓰는 `.wo3u-backup`은 보관하세요. 구버전 백업이 없는 경우 임의로 덮어쓰지 말고 원본을 다시 준비해야 합니다.
 
-ISO 파일 자체가 수정됩니다. 전체를 복사하지 않고 달라지는 구간(약 36 MB)만 제자리에 기록하므로 몇 십 초면 끝나고 ISO 크기도 바뀌지 않습니다.
-같은 위치에 `<ISO 이름>.iso.wo3u-backup` 백업이 생기며, 이 파일로 원본 복구와 다음 버전 갱신을 합니다. 삭제하지 마세요.
+[자세한 설치·업데이트·복구](docs/install.md) · [알려진 문제](docs/known-issues.md)
 
-### B. RPCS3 폴더형 게임 / 추출 폴더
+## 변경 범위
 
-1. RPCS3를 완전히 종료합니다.
-2. `RPCS3 / 폴더형 게임` 칸에 RPCS3 루트, `BLJM61084` 게임 폴더, `PS3_GAME` 또는 `USRDIR` 중 하나를 지정합니다. `dev_hdd0\disc\BLJM61084`는 자동으로 찾습니다.
-3. **폴더 게임 상태 검사** 후 **폴더 게임에 직접 패치**를 누릅니다.
+| 파일 (`PS3_GAME` 기준) | 역할 |
+|---|---|
+| `USRDIR/EBOOT.BIN` | 실행 파일 내 UI 문자열 |
+| `USRDIR/LINKDATA.IDX` | 수정 리소스의 저장 크기 등 인덱스 |
+| `USRDIR/LINKDATA.BIN` | 번역 텍스트, 한글 폰트, 메뉴 이미지 |
+| `PARAM.SFO` | 게임 목록·기본 창 제목용 한국어 제목 |
+| `ICON0.PNG` | 게임 목록용 한국어 아이콘 |
 
-`USRDIR`의 `EBOOT.BIN`, `LINKDATA.IDX`, `LINKDATA.BIN` 세 파일이 수정되고, 게임 폴더 바깥에 `BLJM61084.wo3u-backup`이 생깁니다.
+게임 파일 크기와 ISO 배치를 유지하는 차이 구간 패치입니다. 음성·영상·세이브·RPCS3 설정은 변경하지 않습니다. `ICON0.PNG`는 게임 목록 아이콘이며 인게임 타이틀 화면과 별개입니다.
 
-### C. 명령줄
+대사·이벤트·UI, 무기 속성·소재·BGM, 던전 임무·선녀 의뢰, 공통 메뉴 이미지 등에 번역이 반영되어 있습니다. **모든 화면의 완역·실행 검증을 뜻하지는 않습니다.** 편집 화면 일부 이미지, 미점검 텍스처, 선택 시 확대 잘림·줄넘침 및 일부 이름 표시는 추가 확인이 필요합니다.
 
+## 파일 확인
+
+```text
+WO3U_KR_v20260910b.zip  21,130,509 bytes
+SHA-256 A024F14565CCD1910055B35D9E136AE64452708AD6EBECC59A878D70EB86B68B
 ```
-WO3U_ISO_QuickPatch.exe --iso "D:\WO3U.iso" --verify-only
-WO3U_ISO_QuickPatch.exe --iso "D:\WO3U.iso" --yes
-WO3U_ISO_QuickPatch.exe --iso "D:\WO3U.iso" --restore --backup "D:\WO3U.iso.wo3u-backup"
-WO3U_ISO_QuickPatch.exe --folder "C:\RPCS3" --yes
+
+```powershell
+Get-FileHash .\WO3U_KR_v20260910b.zip -Algorithm SHA256
 ```
 
-자세한 내용은 [README_사용법.txt](README_사용법.txt)에 있습니다.
+[배포물 및 적용 전후 전체 해시](docs/hashes.md)
 
-### 주의
+## 기술 문서
 
-- 패치 후 RPCS3 저장 상태(Save State)로 이어하지 마세요. 저장 상태는 패치 전 폰트와 메모리를 되살릴 수 있습니다. 정상 부팅 후 게임 내부 세이브를 사용하세요.
-- 영문판(`NPUB31505` 등)이나 다른 리전은 지원하지 않습니다. 영문판은 1바이트 폰트만 참조해 2바이트 글리프를 표시하지 못합니다.
-- 세이브·savestate·PPU/SPU/셰이더 캐시는 건드리지 않습니다.
+문서의 바이너리 수치는 이 일본판과 현재 빌드에서 확인한 값입니다. 다른 리전·플랫폼 전체에 일반화하지 않습니다.
 
-## 파일 해시
+- [아카이브·압축·LX 문자열 구조](docs/formats.md): IDX 필드, 압축 블록, 상대 포인터, 문자열 풀 재배치.
+- [한글 인코딩과 폰트](docs/font-text.md): CP932 대체 코드, 2048×4096 아틀라스, 32×32 글리프, 이름의 별표·특수문자 원인.
+- [메뉴 이미지 처리](docs/images.md): PS3 G1T 치수·채널 순서, BC2/BC3 블록, 이미지 누락 추적과 잘림 검증.
+- [실행 파일·제목·아이콘](docs/metadata.md): EBOOT 문자열, SFO 필드, 고정 길이 PNG.
+- [패처·ISO·백업 설계](docs/patcher.md): 팩 형식, 다중 extent, 버전 갱신, 복구 및 검증 한계.
+- [빌드·검증·조사 범위](docs/validation.md): 재현 절차, 증거 수준, 임무 31개라는 수치의 정확한 의미.
+- [변경 이력](CHANGELOG.md).
 
-원본(일본판) → 패치 후, `PS3_GAME\USRDIR` 기준. 최신 값은 [README_사용법.txt](README_사용법.txt)와 [CHANGELOG.md](CHANGELOG.md)를 따릅니다.
+`docs/`는 GitBook용 `SUMMARY.md`와 GitHub Pages용 Docsify 탐색을 함께 제공합니다. 공개 `tools/`만으로 최신 번역·이미지 전체를 재빌드할 수 있는 상태는 아닙니다. [공개 소스 범위](docs/validation.md)를 먼저 확인하세요.
 
-| 파일 | 원본 SHA-256 | 패치 후 SHA-256 (v20260906b) |
-|---|---|---|
-| EBOOT.BIN | `E59780C5DC9C9F27B1CECEF4C3D71AACC9E7C55B86323C7F25BEF54BFFFABF66` | `BCC84BDA4C20C984021CB5432190120209CDE960053858A2E2377BF931EC0612` |
-| LINKDATA.IDX | `11872DF3C8E1026FBFBD9A4A508D2E20B3926DCD45F011C5F609168629A8558B` | `D7DDDEC52C1771808CD804CC60D19CBBFC2BD20600FCDF14DA38362A744DD85A` |
-| LINKDATA.BIN | `E8A491D3FA5B06154B98A56745DA598423555E32DF17DE73D24A4F2E0A6EDAA9` | `CEE8EA70120B012301A65C21280401D7E776A6D1BCCFA39AA92BCBC75ACC2FFB` |
+## 오류 제보
 
-## 동작 환경
+[Issues](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/issues)에 화면 캡처, 진입 경로, 릴리즈 버전, 상태 검사 로그, RPCS3 버전을 올려 주세요. 게임 원본·ISO·개인 세이브는 첨부하지 마세요. 이름 오류는 머리 위 표시와 대화창 표시를 각각 알려 주시면 좋습니다.
 
-RPCS3 v0.0.27 에서 폴더형 게임과 패치된 ISO 직접 부팅 모두 확인했습니다. 실기(CFW PS3)는 아직 확인하지 않았습니다.
-
-## 기술 메모
-
-| 항목 | 내용 | 문서 |
-|---|---|---|
-| LINKDATA.IDX / .BIN | 32바이트 빅엔디언 레코드(offset, unpacked, stored, compressed)와 9.26 GB 아카이브. 슬롯 크기를 넘지 않는 제자리 교체 | [formats](docs/formats.md) |
-| PS3 zlib 블록 압축 | 엔트리 단위 커스텀 블록 압축의 해제·재압축·왕복 검증 | [formats](docs/formats.md) |
-| 폰트 아틀라스 | G1T 4096×2048 DXT5, 32×16 셀 128×128 격자, 같은 문자의 face 2개 | [formats](docs/formats.md) |
-| EBOOT.BIN | 실행 파일 안의 고정 UI 문자열을 제자리 교체(길이 이내), 디버그 SELF로 재포장 | [formats](docs/formats.md) |
-| 빠른 패처 | 원본 ISO와 완성본을 바이트 비교한 차이 구간만 ISO9660 extent 위치에 기록 | [patcher](docs/patcher.md) |
-
-## 문의
-
-네이버 카페 **팬텀 게임천국**
-
-## 라이선스
-
-패치 파일과 도구에 한합니다. 게임의 저작권은 코에이 테크모 게임스에 있습니다.
+코드의 이용 조건은 [LICENSE](LICENSE)를 확인하세요. 원작 게임·상표·음성·이미지의 권리는 각 권리자에게 있습니다.

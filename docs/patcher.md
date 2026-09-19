@@ -1,75 +1,119 @@
-# 빠른 패처
+# 패처·ISO·백업
 
-20 GB ISO에 xdelta 같은 범용 델타를 쓰는 것은 만들기도 적용하기도 비현실적이다.
-모든 수정이 제자리 교체라 세 파일의 크기가 원본과 같으므로, **원본과 완성본을 바이트 비교한
-차이 구간만 ISO 안의 해당 위치에 덮어쓰는** 방식을 택했다. ISO9660/UDF 메타데이터는 바뀌지 않는다.
+이 페이지는 **v20260910b의 5파일 패처**를 설명합니다. 공개 저장소의 `tools/iso_quickpatch`는 이전 3파일 구현이므로 최신 팩의 파일 수·메타데이터·구버전 백업 처리와 차이가 있습니다.
 
-## 구성
+## 차이 구간 방식을 쓴 이유
 
-| 파일 | 역할 |
-|---|---|
-| `tools/iso_quickpatch/build_range_pack.py` | 원본 ISO(읽기 전용)와 완성본 폴더를 비교해 차이 구간 팩 `WO3U_ISO_ranges.bin`을 만든다 |
-| `tools/iso_quickpatch/verify_range_pack.py` | 원본 ISO에 팩을 덧씌운 스트림의 SHA-256이 완성본 해시와 같은지 독립 검증 |
-| `tools/iso_quickpatch/WO3UIsoQuickPatch.cs` | 팩을 리소스로 내장한 GUI/CLI 패처. .NET Framework `csc`로 빌드 |
-| `tools/iso_quickpatch/build_package.py` | 검증 → EXE 빌드 → README·SHA256SUMS → ZIP |
+완성된 게임 데이터와 원본의 길이·배치를 유지할 수 있어, 바뀐 구간만 기록하는 전용 패처를 사용했습니다. ISO를 다시 만들거나 약 9 GB의 LINKDATA 전체를 배포하지 않습니다. 다른 차분 도구로 구현할 수 없다는 뜻은 아닙니다.
 
-## 팩 형식
+현재 팩은 **3,068구간**, 실제 변경 payload **35,888,355바이트**입니다. 헤더·경로·해시·오프셋 등을 포함한 팩 전체는 **35,925,706바이트**입니다. 두 수치를 혼동하지 않습니다. 인접 차이를 합칠 때는 최대 16바이트의 같은 데이터 구간을 포함할 수 있으므로 payload가 순수한 불일치 바이트 수와 같지는 않습니다.
 
-리틀엔디언.
+## 팩 형식: WO3URNG1
 
-```
-"WO3URNG1" | u32 format=1 | u16 len + utf8 version | u32 file_count
-file: u16 len + utf8 iso_path | u64 size | 32B source_sha256 | 32B target_sha256
-      | u32 range_count | range: u64 offset | u32 length | bytes
-```
+정수는 리틀 엔디언입니다. 문자열은 길이를 먼저 기록한 UTF-8이며 아래 길이는 바이트 단위입니다.
 
-16바이트 이내로 떨어진 차이는 한 구간으로 합친다. v20260906b 팩은 3,066구간, 35,806,779바이트다.
-EBOOT.BIN은 디버그 SELF로 재포장돼 거의 전체가 바뀌므로 그중 14.1 MB를 차지한다.
+```text
+8 bytes  magic = "WO3URNG1"
+i32      format_version = 1
+u16      release_string_length
+bytes    release_string
+i32      file_count = 5
 
-## 적용 절차
-
-1. RPCS3 프로세스가 있으면 중단한다.
-2. ISO 모드는 ISO9660 PVD → 루트 → `PS3_GAME/USRDIR`를 따라가 세 파일의 extent를 찾는다.
-   LINKDATA.BIN처럼 여러 extent로 나뉜 파일은 논리 오프셋을 extent별 물리 오프셋으로 변환한다.
-   폴더 모드는 `USRDIR`의 세 파일을 각각 하나의 extent로 본다.
-3. 파일 크기가 팩과 다르면 중단한다.
-4. 상태 판정: 백업 파일이 있으면 변경 구간만 읽어 원본/패치 상태를 가르고, 없으면 세 파일 전체 SHA-256을 구해
-   팩의 `source`/`target` 해시와 비교한다. 어느 쪽도 아니면 "불일치"로 보고 쓰지 않는다.
-5. 원본 상태면 덮어쓸 구간의 현재 바이트를 `.wo3u-backup`에 저장한다(파일 끝에 백업 자체의 SHA-256 푸터).
-6. 구간을 기록하고 디스크에 플러시한 뒤 세 파일 전체 해시를 다시 구해 `target`과 대조한다.
-   불일치면 백업으로 되돌리고 원본 해시를 재확인한 뒤 실패로 끝낸다.
-7. `--restore`는 백업의 구간을 되쓰고 원본 해시를 확인한다. 백업은 재적용에 대비해 남긴다.
-8. 이전 버전이 적용된 대상에 새 버전을 적용할 때는 그 버전의 백업으로 먼저 원본을 복원한 뒤 진행한다.
-
-## 백업 형식
-
-```
-"WO3UBAK1" | i32 version=1 | i32 kind(0=ISO,1=폴더) | i32 stream_count | i64 length × stream_count
-| i32 segment_count | (i32 stream, i64 offset, i32 length, bytes) × segment_count | 32B sha256
+각 파일:
+  u16    path_length
+  bytes  ISO 내부 경로 (UTF-8)
+  u64    logical_file_size
+  32 B   source SHA-256
+  32 B   target SHA-256
+  u32    range_count
+  각 구간:
+    u64  logical_file_offset
+    u32  length
+    bytes replacement_data
 ```
 
-## 재빌드
+파일 순서는 EBOOT, IDX, BIN, SFO, ICON0입니다. 리더는 예상 파일, 파일 크기, 구간의 순서·비중첩·경계, 팩 끝의 불필요한 데이터 여부를 검사합니다. 경로 문자열이나 구간 수를 무조건 신뢰해서는 안 됩니다.
 
-완성본 폴더가 갱신되면 `build_range_pack.py`의 `VERSION_TEXT`와 `TARGET_DIR`를 맞춘 뒤 실행한다.
+## ISO9660과 다중 extent
 
+패처는 2,048바이트 섹터를 기준으로 volume descriptor를 조사하고, `CD001` 및 Primary Volume Descriptor를 확인합니다. 루트 디렉터리 레코드는 PVD의 `+156`에서 읽습니다. 파일 이름은 대소문자를 구분하지 않고 `;1` 같은 버전 접미사를 제거해 비교합니다.
+
+LINKDATA.BIN은 확인한 ISO에서 **9개 extent**로 나뉘어 있습니다. 이 ISO의 반복 extent 크기는 1,073,739,776바이트이지만, 패처가 모든 ISO에 이 크기를 가정하는 것은 아닙니다. interleave가 있는 레코드는 지원하지 않습니다.
+
+논리 파일 오프셋 `p`를 물리 위치로 바꾸려면 extent 누적 길이를 따라갑니다.
+
+```text
+logical file: [extent 0의 길이][extent 1의 길이] ...
+                              ↑ p
+physical = extent_1.start + (p - extent_0.length)
 ```
-python tools/iso_quickpatch/build_package.py --rebuild
+
+변경 구간이 extent 경계를 넘으면 물리 쓰기 구간을 나눕니다. 그 결과 팩의 논리 구간 수와 백업의 물리 segment 수가 반드시 같지는 않습니다. 전체 extent 길이 합, ISO 경계, 정렬된 쓰기 구간의 중첩 여부를 확인합니다.
+
+확인한 ISO 전체 크기는 20,069,285,888바이트이며 패치 후에도 같습니다. 특정 extent 분할의 원인을 파일시스템의 일반적인 4 GB 제한이라고 단정하지 않습니다.
+
+## 폴더 모드
+
+게임 루트·PS3_GAME·USRDIR 또는 RPCS3 루트에서 대상 경로를 해석합니다. USRDIR의 3파일과 상위 PS3_GAME의 SFO·ICON0를 별도 스트림으로 열어 같은 논리 구간을 적용합니다.
+
+ISO 모드는 스트림 1개, 폴더 모드는 스트림 5개입니다. 쓰기 시 독점 접근을 요구하고 RPCS3 실행 여부를 검사합니다. 사용자가 실제로 부팅하는 데이터와 별도 추출 폴더를 혼동하지 않도록 대상 경로를 로그에 남깁니다.
+
+## 상태 판정과 적용 순서
+
+전체 해시 기준 상태는 `Source`(원본), `Target`(현재 완성본), `Unknown`입니다.
+
+```text
+대상·팩·구간 검증
+  ├─ 모두 Target → 다시 쓰지 않음
+  ├─ 모두 Source → 현재 구간 백업 생성
+  └─ 구버전/혼합 → 기존 백업 검사 → 원본 복구 → 전체 원본 해시 확인
+                                      ↓
+                              현재 구간 백업 생성
+                                      ↓
+                           패치 기록 → 전체 5파일 해시
+                                      ├─ 일치 → 완료
+                                      └─ 실패 → 백업 복구·원본 해시 확인
 ```
 
-`csc`는 Git Bash에서 `/옵션`이 경로로 해석되므로 PowerShell 또는 파이썬 `subprocess`로 호출한다.
+구버전 완성본에 최신 구간을 무작정 덧씌우지 않습니다. 원본 복구 후 새 패치를 적용해야 이전 버전에서만 바뀌었던 구간도 남지 않습니다.
 
-## 검증 기록
+### 빠른 검사의 한계
 
-v20260906b:
+현재 패치와 배치가 같은 백업이 있으면 백업 원본 바이트·현재 바이트·패치 바이트를 변경 구간에서 비교합니다. 배치가 다르거나 혼합 상태면 전체 해시 검사로 돌아갑니다.
 
-- 독립 검증 스크립트: 세 파일 모두 원본 해시·완성본 해시 일치.
-- 초판(v20260906)이 적용된 ISO 복사본에 새 패처 적용: 이전 버전으로 감지 → 초판 백업으로 원본 복원(3/3 원본 해시) → b 적용 → 최종 해시 3/3 일치. 재검사는 갱신된 백업으로 빠른 판정.
-- 추출 폴더: 패치 3/3 → 복구 3/3 → 백업 없이 전체 해시로 원본 복귀 확인.
-- 패치된 ISO(v20260906b)를 RPCS3에서 직접 부팅해 정상 실행 확인.
+빠른 검사는 변경 구간 밖의 손상을 발견하지 못합니다. 따라서 **빠른 상태 판정 성공 = 파일 전체 무결성 보증**은 아닙니다. 쓰기 완료 뒤에는 전체 파일 해시를 검사하지만, 이미 최신이라고 빠르게 판정해 쓰기를 생략한 경우와 구분해야 합니다.
 
-v20260906(초판):
+## 백업 형식: WO3UBAK1
 
-- 독립 검증 스크립트: 세 파일 모두 원본 해시·완성본 해시 일치.
-- ISO 복사본: 패치 → 복구 → 재적용, 매 단계 세 파일 해시 일치. 재적용 시 백업 기반 빠른 판정 동작 확인.
-- 추출 폴더: 패치 → 복구 후 전체 해시로 원본 복귀 확인.
-- 미확인: 패치된 ISO의 RPCS3 직접 부팅.
+모든 정수는 리틀 엔디언입니다.
+
+```text
+8 bytes  magic = "WO3UBAK1"
+i32      version = 1
+i32      target_kind (0: ISO, 1: folder)
+i32      stream_count
+i64[]    stream_lengths
+i32      segment_count
+각 segment:
+  i32    stream_index
+  i64    absolute_offset
+  i32    length
+  bytes  original_data
+32 bytes SHA-256(이 footer 이전의 모든 바이트)
+```
+
+파일 길이, 대상 모드, segment 순서·경계·중첩, 마지막 32바이트 footer를 검증합니다. SHA-256 footer는 손상 검출용이며 서명이나 비밀키 인증이 아닙니다. 출처를 모르는 백업을 신뢰할 근거는 되지 않습니다.
+
+백업은 `.tmp`에 본문을 쓰고 flush한 뒤 해시를 붙이고 다시 flush합니다. 이후 기존 백업을 삭제하고 임시 파일을 최종 이름으로 옮깁니다. 이 구현을 완전한 원자적 교체라고 표현할 수는 없습니다. 중단 시 기존 백업·임시 파일을 보존하고 확인해야 합니다.
+
+### 이전 3·4파일 백업
+
+현재 폴더 모드 5스트림에 한해 이전 3·4스트림 백업을 허용합니다. ISO는 원래부터 1스트림이므로 스트림 수만으로 메타데이터 포함 여부를 판단할 수 없습니다.
+
+두 모드 모두 백업이 SFO·ICON0 영역을 포함하지 않으면 해당 파일의 **현재 전체 해시가 원본**인지 확인합니다. 다르면 복구 전에 중단합니다. 기존 백업에 없는 변경을 덮어서 잃어버리지 않기 위한 검사입니다.
+
+## 복구의 범위
+
+백업에는 수정 구간의 원래 바이트만 들어 있습니다. 패치 외 영역 손상, 다른 프로그램의 변경, 디스크 고장, 원본 유실까지 복구하는 전체 이미지 백업은 아닙니다. 기록 실패 뒤 자동 복구도 저장장치가 정상이라는 조건이 필요하며 성공 여부는 원본 전체 해시로 확인합니다.
+
+공개 이전 구현은 [패처 소스](https://github.com/kimjh-eclipse/musou-orochi-2-ultimate-kor/blob/main/tools/iso_quickpatch/WO3UIsoQuickPatch.cs)에서 참고할 수 있습니다. 최신 배포물 검증값은 [해시 문서](hashes.md)에 있습니다.
